@@ -25,7 +25,7 @@ def create_question(resquest):
         questions.append(question)
 
     logger.info("Starting storage questions JSON ...")
-    storage_json_file(questions, local_storage=True)
+    storage_json_file(questions, local_storage=False)
 
     return questions
 

@@ -1,5 +1,5 @@
 from services.chat import ChatGPT
-from params import SYSTEM_PROMPT, TEMPLATE_USER_MESSAGE
+from chat_gpt_params import SYSTEM_PROMPT, TEMPLATE_USER_MESSAGE
 import json
 import logging
 import time

@@ -9,15 +9,15 @@ def storage_json_file(file, local_storage = False):
 
     filename = datetime.now().strftime("%Y-%m-%d") + ".json"
 
-    storage = GoogleCloudStorage(file, filename)
+    storage = GoogleCloudStorage()
     
     if local_storage:
 
-        storage.save_local_file()
+        storage.save_local_file(file, filename)
         
     else:
 
-        storage.upload_json()
+        storage.upload_json_to_storage(file, filename)
 
     logger.info("File successfully storage!")
 
