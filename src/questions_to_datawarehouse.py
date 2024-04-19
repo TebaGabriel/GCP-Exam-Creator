@@ -1,3 +1,4 @@
+from services.datawarehouse import BigQuery
 from services.storage import GoogleCloudStorage
 from datawarehouse_params import QUESTIONS_SCHEMA
 import os
@@ -7,18 +8,20 @@ def questions_to_datawarehouse(request):
     storage = GoogleCloudStorage()
     file = storage.dowload_json_file(request["blob"])
 
-    from google.cloud import bigquery
-    client = bigquery.Client(project = os.getenv("PROJECT_ID"))
-    dataset  = client.dataset(os.getenv("DATASET_NAME"))
-    table = dataset.table("raw_questions")
 
-    job_config = bigquery.LoadJobConfig()
-    job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
-    job_config.schema = QUESTIONS_SCHEMA
+    datawarehouse = BigQuery()
+    datawarehouse.set_LoadJobConfig(
+        source_format = "NEWLINE_DELIMITED_JSON",
+        write_disposition = "WRITE_TRUNCATE"
+    )
+    response = datawarehouse.json_load_to_table(
+        file,
+        QUESTIONS_SCHEMA,
+        "raw_questions"
 
-    job = client.load_table_from_json(file, table, job_config = job_config)
+    )
 
-    print(job.result())
+    print(response)
 
     return
 
