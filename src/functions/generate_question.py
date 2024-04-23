@@ -3,6 +3,7 @@ from chat_gpt_params import SYSTEM_PROMPT, TEMPLATE_USER_MESSAGE
 import json
 import logging
 import time
+from datetime import datetime, timezone
 
 def generate_question_json(topics = None):
     
@@ -22,11 +23,19 @@ def generate_question_json(topics = None):
         logger.info("Requesting chat completion to Chat GPT API ...")
         response = client.chat_completions()
 
-        logger.info("Extracting question from Chat GPT response ...")
-        question = json.loads(response.choices[0].message.content)
+        try:
+
+            logger.info("Extracting question from Chat GPT response ...")
+            question = json.loads(response.choices[0].message.content)
+
+        except:
+            logger.warning("Question could not parse to JSON!!!")
+            continue
         
         logger.info("Validating question keys ...")
         question_validated = client.validate_GCP_question(question)
         time.sleep(5)
+
+    question["created_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f%Z")
     
     return question

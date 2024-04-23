@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime 
+from datetime import datetime, timezone
 from services.storage import GoogleCloudStorage
 
 
@@ -7,7 +7,7 @@ def storage_json_file(file, local_storage = False):
     
     logger = logging.getLogger('log_decorator.storage_json_file')
 
-    filename = datetime.now().strftime("%Y-%m-%d") + ".json"
+    filename = datetime.now(timezone.utc).strftime("%Y-%m-%d") + ".json"
 
     storage = GoogleCloudStorage()
     
