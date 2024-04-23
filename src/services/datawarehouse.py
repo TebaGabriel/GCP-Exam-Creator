@@ -27,4 +27,4 @@ class BigQuery():
             job_config = self.job_config
         )
 
-        return job.result()
+        job.result()

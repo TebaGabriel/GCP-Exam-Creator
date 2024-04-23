@@ -18,14 +18,14 @@ class GoogleCloudStorage( Storage ):
 
         self.bucket_name = os.getenv("BUCKET_NAME")
 
-        self.blob_template_name = "gcp_exam_questions/{name}"
+        self.blob_prefix = "gcp_exam_questions/"
     
     
     def upload_json_to_storage(self, file, filename, from_local_file = False, path = "./"):
 
         bucket = self.client.bucket(self.bucket_name)
         blob = bucket.blob(
-            self.blob_template_name.format(name = filename)
+            self.blob_template_name + filename
         )
 
         if from_local_file:
@@ -47,3 +47,9 @@ class GoogleCloudStorage( Storage ):
         file = blob.download_as_bytes()
 
         return json.loads(file)
+    
+    def list_blobs(self):
+
+        blobs_list = self.client.list_blobs(self.bucket_name, prefix=self.blob_prefix, delimiter="/")
+
+        return [*blobs_list]

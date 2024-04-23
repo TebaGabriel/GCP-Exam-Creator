@@ -43,5 +43,10 @@ QUESTIONS_SCHEMA = [
         "name": "source",
         "type": "STRING",
         "mode": "NULLABLE"
-    }
+    },
+    {
+        "name": "created_at",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
 ]
