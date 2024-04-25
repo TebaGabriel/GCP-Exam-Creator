@@ -7,7 +7,7 @@ steps:
     - deploy
     - create_question
     - --gen2
-    - --region=us-central1-a
+    - --region=us-central1
     - --source=./src
     - --entry-point=questions_creator
     - --trigger-http
