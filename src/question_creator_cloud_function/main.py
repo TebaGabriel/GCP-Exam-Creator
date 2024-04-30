@@ -1,6 +1,6 @@
-from functions.generate_question import generate_question_json
-from functions.storage_json_file import storage_json_file
-from services.logger import log
+from infra.functions.generate_question import generate_question_json
+from infra.functions.storage_json_file import storage_json_file
+from infra.services.logger import log
 import logging
 
 

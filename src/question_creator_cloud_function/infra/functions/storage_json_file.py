@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime, timezone
-from services.storage import GoogleCloudStorage
+from infra.services.storage import GoogleCloudStorage
 
 def storage_json_file(file, local_storage = False):
     

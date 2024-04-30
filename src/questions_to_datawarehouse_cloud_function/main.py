@@ -1,8 +1,7 @@
-import os
 from datetime import timedelta
-from functions.get_blobs_list import get_last_blob_list
-from functions.file_to_datawarehouse import file_to_datawarehouse
-from services.logger import log
+from infra.functions.get_blobs_list import get_last_blob_list
+from infra.functions.file_to_datawarehouse import file_to_datawarehouse
+from infra.services.logger import log
 import logging
 
 @log

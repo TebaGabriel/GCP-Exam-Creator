@@ -1,5 +1,5 @@
 from datetime import datetime, timezone, timedelta
-from services.storage import GoogleCloudStorage
+from infra.services.storage import GoogleCloudStorage
 import logging
 
 def get_last_blob_list(delta_datetime: timedelta):

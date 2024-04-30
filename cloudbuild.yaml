@@ -8,8 +8,7 @@ steps:
     - create_question
     - --gen2
     - --region=us-central1
-    - --source=./src/
-    - --entry-point=questions_creator.py
+    - --source=./src/question_creator_cloud_function
     - --trigger-http
     - --runtime=python311
 

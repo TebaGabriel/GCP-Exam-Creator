@@ -1,5 +1,5 @@
-from services.storage import GoogleCloudStorage
-from services.datawarehouse import BigQuery
+from infra.services.storage import GoogleCloudStorage
+from infra.services.datawarehouse import BigQuery
 from datawarehouse_params import QUESTIONS_SCHEMA
 import logging
 
