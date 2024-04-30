@@ -12,7 +12,7 @@ def questions_to_datawarehouse(request):
     HOURS_RANGE = 2
 
     logger.info(f"Set time range to {HOURS_RANGE} hours ago!")
-    datetime_range = timedelta(days = HOURS_RANGE)
+    datetime_range = timedelta(hours = HOURS_RANGE)
     
     logger.info("Getting blobs in time range...")
     blobs = get_last_blob_list(datetime_range)
