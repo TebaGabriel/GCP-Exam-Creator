@@ -27,7 +27,10 @@ def create_question(resquest):
     logger.info("Starting storage questions JSON ...")
     storage_json_file(questions, local_storage=False)
 
-    return questions
+    return {
+        "status_code": 200,
+        "message": "Success"
+    }
 
 if __name__ == "__main__":
     from dotenv import load_dotenv

@@ -21,7 +21,10 @@ def questions_to_datawarehouse(request):
         logger.info(f"Uploading {blob.name} to datawarehouse ...")
         file_to_datawarehouse(blob)
 
-    return
+    return {
+        "status_code": 200,
+        "message": "Success"
+    }
 
 
 
