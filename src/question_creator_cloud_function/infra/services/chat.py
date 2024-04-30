@@ -1,5 +1,6 @@
 from openai import OpenAI
 import logging
+import os
 
 class ChatGPT():
 
@@ -7,7 +8,9 @@ class ChatGPT():
 
         self.logger = logging.getLogger('log_decorator.chat_gpt')
 
-        self.client = OpenAI()
+        self.client = OpenAI(
+            api_key = os.getenv("OPENAI_API_KEY")
+        )
 
         self.messages = []
 

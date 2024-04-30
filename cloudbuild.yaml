@@ -12,5 +12,17 @@ steps:
     - --trigger-http
     - --runtime=python311
 
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+    - gcloud
+    - functions
+    - deploy
+    - questions_to_datawarehouse
+    - --gen2
+    - --region=us-central1
+    - --source=./src/questions_to_datawarehouse_cloud_function
+    - --trigger-http
+    - --runtime=python311
+
 options:
   logging: CLOUD_LOGGING_ONLY
