@@ -23,7 +23,7 @@ def file_to_database(blob):
 
             name_sufix = f"0{id+1}" if id < 9 else str(id+1)
 
-            name = file[id]["exam_date"] + name_sufix
+            name = "".join(file[id]["exam_date"].split("-")) + name_sufix
             
             logger.info(f"Uploading over question {name} ...")
             database.upsert_data(
