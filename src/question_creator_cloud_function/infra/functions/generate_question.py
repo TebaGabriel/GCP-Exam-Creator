@@ -36,6 +36,7 @@ def generate_question_json(topics = None):
         question_validated = client.validate_GCP_question(question)
         time.sleep(5)
 
-    question["created_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f%Z")
-    
+    execution_datetime = datetime.now(timezone.utc)
+    question["created_at"] = execution_datetime.strftime("%Y-%m-%dT%H:%M:%S.%f%Z")
+    question["exam_date"] = execution_datetime.strftime("%Y-%m-%d")
     return question

@@ -13,7 +13,6 @@ def file_to_database(blob):
     file = storage.dowload_json_file(blob.name)
     
     logger.info("Setting template name ...")
-    data_name_template = "".join(blob.name.split("/")[-1].split(".")[0].split("-"))
 
     logger.info("Initializing database class ...")
     database = Datastore()
@@ -24,7 +23,7 @@ def file_to_database(blob):
 
             name_sufix = f"0{id+1}" if id < 9 else str(id+1)
 
-            name = data_name_template + name_sufix
+            name = file["exam_date"] + name_sufix
             
             logger.info(f"Uploading over question {name} ...")
             database.upsert_data(
