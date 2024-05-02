@@ -10,7 +10,7 @@ class Datastore():
 
         self.client = datastore.Client(
             project = os.getenv("PROJECT_ID"),
-            database = os.getenv("DATASTORE-DATABASE")
+            database = os.getenv("DATASTORE_DATABASE")
             )
         
     def __enter__(self):

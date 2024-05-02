@@ -11,6 +11,7 @@ steps:
     - --source=./src/question_creator_cloud_function
     - --trigger-http
     - --runtime=python311
+    - --ingress-settings internal-only
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args:
@@ -23,6 +24,7 @@ steps:
     - --source=./src/questions_to_database_cloud_function
     - --trigger-http
     - --runtime=python311
+    - --ingress-settings internal-only
 
 options:
   logging: CLOUD_LOGGING_ONLY
