@@ -16,6 +16,7 @@ def create_question(resquest):
         logger.warning(f"Generating question {i+1} ...")
         logger.info("Starting generate question JSON file ...")
         question  = generate_question_json(topics_already_used)
+        question["question_id"] = i+1
         logger.info("Question JSON file sucessfully generated ...") 
 
         logger.info("Adding topic to the topics list ...")
