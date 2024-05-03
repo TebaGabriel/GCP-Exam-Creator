@@ -20,6 +20,8 @@ class Storage():
 
         self.logger.info(f"{local_filename} successfully saved!")
 
+        return local_filename
+
 class GoogleCloudStorage( Storage ):
 
     def __init__(self):
@@ -33,7 +35,7 @@ class GoogleCloudStorage( Storage ):
         self.blob_prefix = "gcp_exam_questions/"
     
     
-    def upload_json_to_storage(self, file, filename, from_local_file = False, path = "./"):
+    def upload_json_to_storage(self, file, filename):
 
         self.logger.info("Seting bucket ...")
         bucket = self.client.bucket(self.bucket_name)
@@ -43,24 +45,13 @@ class GoogleCloudStorage( Storage ):
             self.blob_prefix + filename
         )
 
-        if from_local_file:
+        self.logger.warn("Saving file locally ...")
 
-            self.logger.warn("Upload mode from local file!")
-            
-            local_path = os.path.join(path, filename)
-            self.logger.info(f"Set file path as {local_path}!")
+        local_path = self.save_local_file(file, filename, path="/tmp")
 
-            self.logger.info(f"Uploading local file to Cloud Storage ...")
-            blob.upload_from_filename(local_path, content_type = 'application/json')
-
-        else:
-
-            self.logger.info("Parsing file to JSON ...")
-            file_json = json.dumps(file)
-
-            self.logger.info(f"Uploading file to Cloud Storage ...")
-            blob.upload_from_string(file_json, content_type = 'application/json')
-            
+        self.logger.info(f"Uploading local file to Cloud Storage ...")
+        blob.upload_from_filename(local_path, content_type = 'application/json')
+        
         self.logger.info(f"File sucessfully uploaded to Cloud Storage")
 
     def dowload_json_file (self, blob_name):
