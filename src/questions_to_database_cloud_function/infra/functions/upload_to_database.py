@@ -19,15 +19,18 @@ def file_to_database(blob):
     with database as db:
 
         logger.info("Iterating over questions ...")
-        for id in range(len(file)):
+        for data in file:
 
-            name_sufix = f"0{id+1}" if id < 9 else str(id+1)
+            question_id = data["question_id"]
+            exam_id = data["exam_id"]
 
-            name = "".join(file[id]["exam_date"].split("-")) + name_sufix
+            name_sufix = f"0{question_id}" if question_id < 10 else str(question_id)
+
+            name = exam_id + name_sufix
             
             logger.info(f"Uploading over question {name} ...")
             database.upsert_data(
-                file[id],
+                data,
                 "questions",
                 name
             )
