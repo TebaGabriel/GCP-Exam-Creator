@@ -10,7 +10,7 @@ steps:
     - --region=us-central1
     - --source=./src/question_creator_cloud_function
     - --trigger-http
-    - --runtime=python311
+    - --runtime=python312
     - --ingress-settings=internal-only
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -23,7 +23,7 @@ steps:
     - --region=us-central1
     - --source=./src/questions_to_database_cloud_function
     - --trigger-http
-    - --runtime=python311
+    - --runtime=python312
     - --ingress-settings=internal-only
 
 options:
