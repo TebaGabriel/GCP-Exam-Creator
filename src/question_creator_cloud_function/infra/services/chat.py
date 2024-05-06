@@ -4,6 +4,18 @@ import os
 
 class ChatGPT():
 
+    __instance = None
+
+    def __new__(cls):
+
+        if (cls.__instance is None):
+
+            cls.__instance = super(ChatGPT, cls).__new__(cls)
+
+        cls.messages = []
+    
+        return cls.__instance
+
     def __init__(self):
 
         self.logger = logging.getLogger('log_decorator.chat_gpt')
@@ -11,8 +23,6 @@ class ChatGPT():
         self.client = OpenAI(
             api_key = os.getenv("OPENAI_API_KEY")
         )
-
-        self.messages = []
 
         self.json_output_keys = ["topic", "question", "a", "b", "c", "d", "answer", "explanation", "source"]
 

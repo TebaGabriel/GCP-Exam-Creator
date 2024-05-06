@@ -13,18 +13,5 @@ steps:
     - --runtime=python312
     - --ingress-settings=internal-only
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args:
-    - gcloud
-    - functions
-    - deploy
-    - questions_to_database
-    - --gen2
-    - --region=us-central1
-    - --source=./src/questions_to_database_cloud_function
-    - --trigger-http
-    - --runtime=python312
-    - --ingress-settings=internal-only
-
 options:
   logging: CLOUD_LOGGING_ONLY

@@ -22,6 +22,7 @@ def generate_question_json(topics = None):
 
         logger.info("Requesting chat completion to Chat GPT API ...")
         response = client.chat_completions()
+        execution_datetime = datetime.now(timezone.utc)
 
         try:
 
@@ -36,7 +37,5 @@ def generate_question_json(topics = None):
         question_validated = client.validate_GCP_question(question)
         time.sleep(5)
 
-    execution_datetime = datetime.now(timezone.utc)
-    question["created_at"] = execution_datetime.strftime("%Y-%m-%dT%H:%M:%S.%f%Z")
-    question["exam_id"] = execution_datetime.strftime("%Y%m%d")
+    question["created_at"] = execution_datetime
     return question
