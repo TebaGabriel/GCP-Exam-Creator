@@ -37,5 +37,7 @@ def generate_question_json(topics = None):
         question_validated = client.validate_GCP_question(question)
         time.sleep(5)
 
-    question["created_at"] = execution_datetime
-    return question
+    return {
+        "data": question,
+        "id": execution_datetime.strftime("%Y%m%d%H%M%S%f")
+    }

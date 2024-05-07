@@ -15,16 +15,18 @@ def create_question(resquest):
         logger.warning(f"Generating question {i+1} ...")
 
         logger.info("Starting generate question ...")
-        question  = generate_question_json(metadata.topics_already_used)
+        question_dict  = generate_question_json(metadata.topics_already_used)
         
-        question["question_id"] = i+1
+        question = question_dict["data"]
+        question_id = question_dict["id"]
+
         question["exam_id"] = metadata.exam_id
         logger.info("Question dict file sucessfully generated ...") 
 
         metadata.add_topic_as_already_used(question["topic"])
 
         logger.info("Adding question to the questions list ...")
-        data_to_database(question)
+        data_to_database(question, question_id)
 
 
     return {
